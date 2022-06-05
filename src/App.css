@@ -1,0 +1,18 @@
+.contentHeadFlex{
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.formFlex{
+  display: flex;
+  align-items: baseline;
+}
+
+.goContentsCta{
+  margin: auto;
+}
+
+.formLabel{
+  margin-right: 12px;
+}
