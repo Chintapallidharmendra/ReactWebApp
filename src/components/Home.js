@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { LearningEnum } from "../enum";
 import AddPost from "./AddPost";
+import CounterWrapper from "./CounterWrapper";
 import PostList from "./PostList";
 
 class Home extends Component {
@@ -47,6 +48,15 @@ class Home extends Component {
               Click to Add Post
             </button>
           </tr>
+          <tr>
+            <td>UseState Counter</td>
+            <button
+              value={LearningEnum.UseStateCounter}
+              onClick={this.handleScreeenTypeChange}
+            >
+              Click for Counter
+            </button>
+          </tr>
         </tbody>
       </table>
     );
@@ -66,6 +76,13 @@ class Home extends Component {
       case LearningEnum.HttpPost:
         body = (
           <AddPost handleGoToContentsClick={this.handleGoToContentsClick} />
+        );
+        break;
+      case LearningEnum.UseStateCounter:
+        body = (
+          <CounterWrapper
+            handleGoToContentsClick={this.handleGoToContentsClick}
+          />
         );
         break;
       default:
