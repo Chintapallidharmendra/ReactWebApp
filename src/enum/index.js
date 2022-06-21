@@ -4,4 +4,5 @@ export const LearningEnum = {
   HttpPost: 3,
   UseStateCounter: 4,
   UseStateExamples: 5,
+  UseEffectExamples: 6,
 };
