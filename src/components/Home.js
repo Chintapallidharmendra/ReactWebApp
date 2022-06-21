@@ -3,6 +3,7 @@ import { LearningEnum } from "../enum";
 import AddPost from "./AddPost";
 import CounterWrapper from "./CounterWrapper";
 import PostList from "./PostList";
+import UseEffectExamples from "./useEffectExamples";
 import UseStateExamples from "./UseStateExamples";
 
 class Home extends Component {
@@ -67,6 +68,15 @@ class Home extends Component {
               UseState Examples
             </button>
           </tr>
+          <tr>
+            <td>UseEffect Examples</td>
+            <button
+              value={LearningEnum.UseEffectExamples}
+              onClick={this.handleScreeenTypeChange}
+            >
+              UseEffect Examples
+            </button>
+          </tr>
         </tbody>
       </table>
     );
@@ -98,6 +108,13 @@ class Home extends Component {
       case LearningEnum.UseStateExamples:
         body = (
           <UseStateExamples
+            handleGoToContentsClick={this.handleGoToContentsClick}
+          />
+        );
+        break;
+      case LearningEnum.UseEffectExamples:
+        body = (
+          <UseEffectExamples
             handleGoToContentsClick={this.handleGoToContentsClick}
           />
         );
