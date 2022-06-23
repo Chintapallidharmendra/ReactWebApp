@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useState, useEffect } from "react";
 import ContentTop from "./ContentTop";
 
@@ -43,6 +44,39 @@ const MouseListener = () => {
     <>
       <p>UseEffect- Mouse Listener </p>
       <p>{`mouseX - ${mouseX} || mouseY - ${mouseY}`}</p>
+    </>
+  );
+};
+
+const PostData = () => {
+  const [post, setPost] = useState(null);
+  const [id, setId] = useState(0);
+  useEffect(() => {
+    console.log("Post Fetching....");
+    if (id > 0) {
+      axios
+        .get(`https://jsonplaceholder.typicode.com/posts/${id}`)
+        .then((res) => {
+          if (res.status === 200) {
+            setPost(res.data);
+          } else {
+            console.log("Post Fetching Failed");
+          }
+        })
+        .catch((err) => console.error(err));
+    }
+  }, [id]);
+  return (
+    <>
+      <input
+        onChange={(e) => {
+          if (e.target.value) {
+            setId(e.target.value);
+          }
+        }}
+        placeholder="Enter Post Id"
+      />
+      {post && <li id={id}>{post.title}</li>}
     </>
   );
 };
@@ -95,6 +129,8 @@ const UseEffectExamples = ({ handleGoToContentsClick }) => {
         Toggle Timer
       </button>
       {isTimerActive && <TimerDisplay />}
+      <hr />
+      <PostData />
       <hr />
     </div>
   );

@@ -5,4 +5,5 @@ export const LearningEnum = {
   UseStateCounter: 4,
   UseStateExamples: 5,
   UseEffectExamples: 6,
+  UseContextExample: 7,
 };
