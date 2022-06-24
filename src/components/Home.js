@@ -5,6 +5,7 @@ import CounterWrapper from "./CounterWrapper";
 import PostList from "./PostList";
 import UseContextExample from "./UseContextExample";
 import UseEffectExamples from "./useEffectExamples";
+import UseReducerExamples from "./UseReducerExamples";
 import UseStateExamples from "./UseStateExamples";
 
 class Home extends Component {
@@ -87,6 +88,15 @@ class Home extends Component {
               UseContext Example
             </button>
           </tr>
+          <tr>
+            <td>UseReducer Examples</td>
+            <button
+              value={LearningEnum.UseReducerExamples}
+              onClick={this.handleScreeenTypeChange}
+            >
+              UseReducer Examples
+            </button>
+          </tr>
         </tbody>
       </table>
     );
@@ -132,6 +142,13 @@ class Home extends Component {
       case LearningEnum.UseContextExample:
         body = (
           <UseContextExample
+            handleGoToContentsClick={this.handleGoToContentsClick}
+          />
+        );
+        break;
+      case LearningEnum.UseReducerExamples:
+        body = (
+          <UseReducerExamples
             handleGoToContentsClick={this.handleGoToContentsClick}
           />
         );
