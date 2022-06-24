@@ -6,4 +6,5 @@ export const LearningEnum = {
   UseStateExamples: 5,
   UseEffectExamples: 6,
   UseContextExample: 7,
+  UseReducerExamples: 8,
 };
