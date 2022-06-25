@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { LearningEnum } from "../enum";
+import { getLearningList } from "../Utils";
 import AddPost from "./AddPost";
 import CounterWrapper from "./CounterWrapper";
 import PostList from "./PostList";
@@ -8,12 +9,37 @@ import UseEffectExamples from "./useEffectExamples";
 import UseReducerExamples from "./UseReducerExamples";
 import UseStateExamples from "./UseStateExamples";
 
+const learningContainerClasses = (shouldApplyTopBorder) => {
+  return {
+    display: "flex",
+    justifyContent: "flex-start",
+    alignItems: "center",
+    borderRight: "1px solid black",
+    borderLeft: "1px solid black",
+    borderTop: shouldApplyTopBorder && "1px solid black",
+    borderBottom: "1px solid black",
+    width: "50%",
+    marginLeft: "20px",
+  };
+};
+
+const learningContentTitleClasses = {
+  width: "50%",
+  padding: "12px",
+  borderRight: "1px solid black",
+};
+
+const learningContentClasses = {
+  width: "50%",
+  margin: "12px",
+};
 class Home extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       screenStatus: LearningEnum.Home,
+      LearningList: [],
     };
   }
 
@@ -25,80 +51,32 @@ class Home extends Component {
     this.setState({ screenStatus: LearningEnum.Home });
   };
 
-  renderLearningContent = () => {
+  renderLearningContentItem = (learningItem) => {
+    const { title, screen, screenChangeText, id } = learningItem;
     return (
-      <table>
-        <thead>
-          <h3>List of Learnings</h3>
-        </thead>
-        <tbody>
-          <tr>
-            <td>HTTP GET</td>
-            <td>
-              <button
-                value={LearningEnum.HttpGet}
-                onClick={this.handleScreeenTypeChange}
-              >
-                Click to fetch Posts
-              </button>
-            </td>
-          </tr>
-          <tr>
-            <td>HTTP POST</td>
-            <button
-              value={LearningEnum.HttpPost}
-              onClick={this.handleScreeenTypeChange}
-            >
-              Click to Add Post
-            </button>
-          </tr>
-          <tr>
-            <td>UseState Counter</td>
-            <button
-              value={LearningEnum.UseStateCounter}
-              onClick={this.handleScreeenTypeChange}
-            >
-              Click for Counter
-            </button>
-          </tr>
-          <tr>
-            <td>UseState Examples</td>
-            <button
-              value={LearningEnum.UseStateExamples}
-              onClick={this.handleScreeenTypeChange}
-            >
-              UseState Examples
-            </button>
-          </tr>
-          <tr>
-            <td>UseEffect Examples</td>
-            <button
-              value={LearningEnum.UseEffectExamples}
-              onClick={this.handleScreeenTypeChange}
-            >
-              UseEffect Examples
-            </button>
-          </tr>
-          <tr>
-            <td>UseContext Example</td>
-            <button
-              value={LearningEnum.UseContextExample}
-              onClick={this.handleScreeenTypeChange}
-            >
-              UseContext Example
-            </button>
-          </tr>
-          <tr>
-            <td>UseReducer Examples</td>
-            <button
-              value={LearningEnum.UseReducerExamples}
-              onClick={this.handleScreeenTypeChange}
-            >
-              UseReducer Examples
-            </button>
-          </tr>
-        </tbody>
-      </table>
+      <div style={learningContainerClasses(id === 1)} key={id}>
+        <div style={learningContentTitleClasses}>{title}</div>
+        <button
+          style={learningContentClasses}
+          value={screen}
+          onClick={this.handleScreeenTypeChange}
+        >
+          {screenChangeText}
+        </button>
+      </div>
+    );
+  };
+
+  renderLearningContent = () => {
+    const learningList = getLearningList();
+    const learningListItems = learningList.map((item) => {
+      return this.renderLearningContentItem(item);
+    });
+    return (
+      <>
+        <h3>List of Learnings: </h3>
+        {learningListItems}
+      </>
     );
   };
 

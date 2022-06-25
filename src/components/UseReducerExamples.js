@@ -1,5 +1,6 @@
 import React, { useReducer } from "react";
 import ContentTop from "./ContentTop";
+import DataFetchingReducer from "./DataFetchingReducer";
 import SharedCounter from "./SharedCounter";
 
 const INCREMENT_COUNTER = "counter/increment";
@@ -87,6 +88,10 @@ const UseReducerExamples = ({ handleGoToContentsClick }) => {
         <hr />
         <div id="shared-counter">
           <SharedCounter />
+        </div>
+        <hr />
+        <div id="data-reducer">
+          <DataFetchingReducer />
         </div>
       </div>
     </div>
