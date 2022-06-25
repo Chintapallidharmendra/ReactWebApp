@@ -33,6 +33,7 @@ const learningContentClasses = {
   width: "50%",
   margin: "12px",
 };
+
 class Home extends Component {
   constructor(props) {
     super(props);

@@ -1,12 +1,33 @@
 import axios from "axios";
 import React, { useEffect, useReducer, useState } from "react";
 
-const tableBorderClasses = {
-  border: "1px solid black",
-  borderCollapse: "collapse",
+const postContainerClasses = (shouldApplyTopBorder) => {
+  return {
+    display: "flex",
+    justifyContent: "flex-start",
+    alignItems: "center",
+    borderRight: "1px solid black",
+    borderLeft: "1px solid black",
+    borderTop: shouldApplyTopBorder && "1px solid black",
+    borderBottom: "1px solid black",
+    width: "50%",
+    marginLeft: "20px",
+  };
 };
-const tableMarginClasses = {
-  margin: "20px",
+
+const postContentTitleClasses = {
+  width: "25%",
+  padding: "12px",
+};
+
+const postContentClasses = {
+  width: "50%",
+  padding: "12px",
+  borderLeft: "1px solid black",
+};
+
+const postContainerMarginClasses = {
+  marginTop: "12px",
 };
 const POST_FETCH = "ReducerExamples/POST_FETCH";
 const postReducer = (state = {}, action) => {
@@ -32,6 +53,7 @@ const DataFetchingReducer = () => {
   const [post, postDispatch] = useReducer(postReducer, {});
   const [postId, setPostId] = useState(0);
   const [fetchPostWithId, setFetchPostWithId] = useState(0);
+  const [isPostVisible, setPostVisibility] = useState(false);
   useEffect(() => {
     if (fetchPostWithId > 0) {
       axios
@@ -40,12 +62,16 @@ const DataFetchingReducer = () => {
           if (res.status === 200) {
             postDispatch({ type: POST_FETCH, payload: res.data });
           } else {
+            postDispatch({ type: POST_FETCH, payload: {} });
             alert("Post Fetching Failed!");
           }
         })
         .catch((err) => {
+          postDispatch({ type: POST_FETCH, payload: {} });
           console.error(err);
         });
+    } else {
+      setPostVisibility(false);
     }
   }, [fetchPostWithId]);
 
@@ -55,28 +81,28 @@ const DataFetchingReducer = () => {
         placeholder="Enter PostId"
         onChange={(e) => {
           setPostId(e.target.value);
+          setPostVisibility(false);
         }}
       />
       <button
         onClick={() => {
           setFetchPostWithId(postId);
+          setPostVisibility(true);
         }}
       >
         Get Post
       </button>
-      {post.id && (
-        <table style={{ ...tableBorderClasses, ...tableMarginClasses }}>
-          <thead style={tableBorderClasses}>
-            <tr>
-              <th style={tableBorderClasses}>Title</th>
-              <th>Content</th>
-            </tr>
-          </thead>
-          <tr id={post.id} style={tableBorderClasses}>
-            <td style={tableBorderClasses}>{post.title}</td>
-            <td>{post.body}</td>
-          </tr>
-        </table>
+      {isPostVisible && post.id && (
+        <div style={postContainerMarginClasses}>
+          <div style={postContainerClasses(true)}>
+            <div style={postContentTitleClasses}>Title</div>
+            <div style={postContentClasses}>Content</div>
+          </div>
+          <div style={postContainerClasses(false)} id={`post-${post.id}`}>
+            <div style={postContentTitleClasses}>{post.title}</div>
+            <div style={postContentClasses}>{post.body}</div>
+          </div>
+        </div>
       )}
     </>
   );
