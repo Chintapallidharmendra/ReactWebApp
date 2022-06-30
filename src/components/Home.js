@@ -4,6 +4,7 @@ import { getLearningList } from "../Utils";
 import AddPost from "./AddPost";
 import CounterWrapper from "./CounterWrapper";
 import PostList from "./PostList";
+import UseCallbackExample from "./UseCallbackExample";
 import UseContextExample from "./UseContextExample";
 import UseEffectExamples from "./useEffectExamples";
 import UseReducerExamples from "./UseReducerExamples";
@@ -128,6 +129,13 @@ class Home extends Component {
       case LearningEnum.UseReducerExamples:
         body = (
           <UseReducerExamples
+            handleGoToContentsClick={this.handleGoToContentsClick}
+          />
+        );
+        break;
+      case LearningEnum.UseCallbackExample:
+        body = (
+          <UseCallbackExample
             handleGoToContentsClick={this.handleGoToContentsClick}
           />
         );
