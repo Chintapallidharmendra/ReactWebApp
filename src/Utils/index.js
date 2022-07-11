@@ -61,7 +61,6 @@ export const getLearningList = () => {
       screen: LearningEnum.UseRefExamples,
       screenChangeText: "UseRef Examples",
     },
-    
   ];
   return learningList;
 };
