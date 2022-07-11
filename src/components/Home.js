@@ -7,7 +7,9 @@ import PostList from "./PostList";
 import UseCallbackExample from "./UseCallbackExample";
 import UseContextExample from "./UseContextExample";
 import UseEffectExamples from "./useEffectExamples";
+import UseMemoExample from "./UseMemoExample";
 import UseReducerExamples from "./UseReducerExamples";
+import UseRefExamples from "./UseRefExamples";
 import UseStateExamples from "./UseStateExamples";
 
 const learningContainerClasses = (shouldApplyTopBorder) => {
@@ -136,6 +138,20 @@ class Home extends Component {
       case LearningEnum.UseCallbackExample:
         body = (
           <UseCallbackExample
+            handleGoToContentsClick={this.handleGoToContentsClick}
+          />
+        );
+        break;
+      case LearningEnum.UseMemoExample:
+        body = (
+          <UseMemoExample
+            handleGoToContentsClick={this.handleGoToContentsClick}
+          />
+        );
+        break;
+      case LearningEnum.UseRefExamples:
+        body = (
+          <UseRefExamples
             handleGoToContentsClick={this.handleGoToContentsClick}
           />
         );

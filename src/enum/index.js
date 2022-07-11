@@ -8,4 +8,6 @@ export const LearningEnum = {
   UseContextExample: 7,
   UseReducerExamples: 8,
   UseCallbackExample: 9,
+  UseMemoExample: 10,
+  UseRefExamples: 11,
 };
