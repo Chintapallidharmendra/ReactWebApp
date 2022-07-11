@@ -49,6 +49,19 @@ export const getLearningList = () => {
       screen: LearningEnum.UseCallbackExample,
       screenChangeText: "UseCallback Example",
     },
+    {
+      id: 9,
+      title: "UseMemo Example",
+      screen: LearningEnum.UseMemoExample,
+      screenChangeText: "UseMemo Example",
+    },
+    {
+      id: 10,
+      title: "UseRef Examples",
+      screen: LearningEnum.UseRefExamples,
+      screenChangeText: "UseRef Examples",
+    },
+    
   ];
   return learningList;
 };
