@@ -61,6 +61,12 @@ export const getLearningList = () => {
       screen: LearningEnum.UseRefExamples,
       screenChangeText: "UseRef Examples",
     },
+    {
+      id: 11,
+      title: "Custom Hooks",
+      screen: LearningEnum.CustomHooks,
+      screenChangeText: "Custom Hooks",
+    },
   ];
   return learningList;
 };

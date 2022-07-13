@@ -3,6 +3,7 @@ import { LearningEnum } from "../enum";
 import { getLearningList } from "../Utils";
 import AddPost from "./AddPost";
 import CounterWrapper from "./CounterWrapper";
+import CustomHooks from "./CustomHooks";
 import PostList from "./PostList";
 import UseCallbackExample from "./UseCallbackExample";
 import UseContextExample from "./UseContextExample";
@@ -154,6 +155,11 @@ class Home extends Component {
           <UseRefExamples
             handleGoToContentsClick={this.handleGoToContentsClick}
           />
+        );
+        break;
+      case LearningEnum.CustomHooks:
+        body = (
+          <CustomHooks handleGoToContentsClick={this.handleGoToContentsClick} />
         );
         break;
       default:

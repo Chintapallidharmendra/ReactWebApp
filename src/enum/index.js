@@ -10,4 +10,5 @@ export const LearningEnum = {
   UseCallbackExample: 9,
   UseMemoExample: 10,
   UseRefExamples: 11,
+  CustomHooks: 12,
 };
